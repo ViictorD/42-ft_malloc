@@ -1,0 +1,16 @@
+{
+	"files.associations": {
+		"ft_malloc.h": "c",
+		"bitset": "c",
+		"initializer_list": "c",
+		"list": "c",
+		"memory": "c",
+		"string": "c",
+		"string_view": "c",
+		"utility": "c",
+		"iterator": "c",
+		"libft.h": "c",
+		"__mutex_base": "c",
+		"stdio.h": "c"
+	}
+}
