@@ -6,7 +6,7 @@
 /*   By: vdarmaya <vdarmaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:12:39 by vdarmaya          #+#    #+#             */
-/*   Updated: 2018/06/19 19:22:37 by vdarmaya         ###   ########.fr       */
+/*   Updated: 2018/06/21 21:04:13 by vdarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,15 @@ static void	try_free_large(t_block *b, void *ptr)
 
 void		fusion_block(t_block *b)
 {
+	size_t	tmp;
+
 	while (b->next && b->next->is_free && \
 		(void*)b + BLOCK_SIZE + b->size == b->next)
 	{
+		tmp = b->size;
 		b->size += BLOCK_SIZE + b->next->size;
 		b->next = b->next->next;
-		ft_bzero((void*)b + BLOCK_SIZE + b->size, BLOCK_SIZE);
+		ft_bzero((void*)b + BLOCK_SIZE + tmp, BLOCK_SIZE);
 	}
 }
 
@@ -87,10 +90,10 @@ void		free(void *ptr)
 	pthread_mutex_lock(get_lock());
 	if (try_free(get_chunks()->tiny, ptr, \
 		(void*)get_chunks()->tiny + TINY_MIN) == 1)
-		return ;
+		;
 	else if (try_free(get_chunks()->small, ptr, \
 		(void*)get_chunks()->small + SMALL_MIN) == 1)
-		return ;
+		;
 	else
 		try_free_large(get_chunks()->large, ptr);
 	pthread_mutex_unlock(get_lock());

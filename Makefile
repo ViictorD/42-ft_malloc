@@ -18,7 +18,9 @@ FILES = malloc.c \
 		utils.c \
 		free.c \
 		show_alloc_mem.c \
-		realloc.c
+		show_alloc_mem_ex.c \
+		realloc.c \
+		calloc.c
 
 SRCS = $(addprefix $(SRC_DIR), $(FILES))
 

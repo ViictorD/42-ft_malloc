@@ -6,7 +6,7 @@
 /*   By: vdarmaya <vdarmaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:11:03 by vdarmaya          #+#    #+#             */
-/*   Updated: 2018/06/19 19:22:22 by vdarmaya         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:06:37 by vdarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ static t_block	*manage_map(size_t size, t_block *zone)
 		}
 	}
 	else
+	{
 		split_block(b, size);
+	}
 	return (b);
 }
 
@@ -91,10 +93,7 @@ void			*malloc(size_t size)
 	size_t	s;
 	t_block	*b;
 
-	ft_putstr("IN MALLOC ");
 	pthread_mutex_lock(get_lock());
-	sleep(3);
-	ft_putstr("yolo");
 	s = ALLIGN4(size);
 	if (s + BLOCK_SIZE * 2 <= TINY)
 		b = manage_map(s, get_chunks()->tiny);

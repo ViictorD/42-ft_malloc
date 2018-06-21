@@ -6,7 +6,7 @@
 /*   By: vdarmaya <vdarmaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:22:05 by vdarmaya          #+#    #+#             */
-/*   Updated: 2018/06/19 19:24:45 by vdarmaya         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:35:13 by vdarmaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ typedef struct		s_chunk
 void				free(void *ptr);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
+void				*calloc(size_t count, size_t size);
 void				show_alloc_mem(void);
+void				show_alloc_mem_ex(void);
+void				print_hex(long nb, char first);
+void				print_nb(long nb);
 t_chunk				*get_chunks(void);
 void				split_block(t_block *b, size_t size);
 t_block				*find_ptr(t_block *b, void *ptr);
